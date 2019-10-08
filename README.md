@@ -15,5 +15,8 @@ Types:
   - `Version`: struct modelling semantic versioning, with support for parsing a string representation
   - `Utils`: various maths and templated generic and stateless functions
 
+CMake:
+  - Set `SOURCES` to existing source file list and include `GameTypes.cmake` before creating the target
+
 Compile Units:
-  - All `.cpp` files
+  - All .cpp files
