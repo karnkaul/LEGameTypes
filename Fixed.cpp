@@ -100,12 +100,7 @@ Fixed Fixed::Tan() const
 
 Fixed Fixed::ArcTan() const
 {
-	f64 val = ToF64();
-	if (val == 1.0)
-	{
-		return Maths::DEG_TO_RAD * Fixed(90);
-	}
-	return Fixed(std::atan(val));
+	return Fixed(std::atan(ToF64()));
 }
 
 std::string Fixed::ToString() const
