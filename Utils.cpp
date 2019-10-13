@@ -117,7 +117,8 @@ std::string ToText(std::vector<u8> rawBuffer)
 std::pair<std::string, std::string> Bisect(std::string_view input, char delimiter)
 {
 	size_t idx = input.find(delimiter);
-	return idx < input.size() ? std::pair<std::string, std::string>(input.substr(0, idx), input.substr(idx + 1, input.size())) : std::pair<std::string, std::string>(std::string(input), {});
+	return idx < input.size() ? std::pair<std::string, std::string>(input.substr(0, idx), input.substr(idx + 1, input.size()))
+							  : std::pair<std::string, std::string>(std::string(input), {});
 }
 
 void RemoveChars(std::string& outInput, std::initializer_list<char> toRemove)
