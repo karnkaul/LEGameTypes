@@ -21,7 +21,7 @@ u32 Parse(const std::vector<std::string>& vec, size_t idx)
 
 Version::Version() = default;
 
-Version::Version(u32 major, u32 minor, u32 patch, u32 pre) : major(major), minor(minor), patch(patch), pre(pre) {}
+Version::Version(u32 major, u32 minor, u32 patch, u32 tweak) : major(major), minor(minor), patch(patch), tweak(tweak) {}
 
 Version::Version(std::string_view serialised)
 {
@@ -29,7 +29,7 @@ Version::Version(std::string_view serialised)
 	major = Parse(tokens, 0);
 	minor = Parse(tokens, 1);
 	patch = Parse(tokens, 2);
-	pre = Parse(tokens, 3);
+	tweak = Parse(tokens, 3);
 }
 
 u32 Version::Major() const
@@ -47,6 +47,11 @@ u32 Version::Patch() const
 	return patch;
 }
 
+u32 Version::Tweak() const
+{
+	return tweak;
+}
+
 std::string Version::ToString() const
 {
 	static constexpr size_t MAX = 3 + 1 + 3 + 1 + 3 + 1 + 3;
@@ -58,7 +63,7 @@ std::string Version::ToString() const
 	ret += ".";
 	ret += Strings::ToString(patch);
 	ret += ".";
-	ret += Strings::ToString(pre);
+	ret += Strings::ToString(tweak);
 	return ret;
 }
 
@@ -74,7 +79,7 @@ bool Version::Upgrade(const Version& rhs)
 
 bool Version::operator==(const Version& rhs)
 {
-	return major == rhs.major && minor == rhs.minor && patch == rhs.patch && pre == rhs.pre;
+	return major == rhs.major && minor == rhs.minor && patch == rhs.patch && tweak == rhs.tweak;
 }
 
 bool Version::operator!=(const Version& rhs)
@@ -86,7 +91,7 @@ bool Version::operator<(const Version& rhs)
 {
 	return (major < rhs.major) || (major == rhs.major && minor < rhs.minor)
 		   || (major == rhs.major && minor == rhs.minor && patch < rhs.patch)
-		   || (major == rhs.major && minor == rhs.minor && patch == rhs.patch && pre < rhs.pre);
+		   || (major == rhs.major && minor == rhs.minor && patch == rhs.patch && tweak < rhs.tweak);
 }
 
 bool Version::operator<=(const Version& rhs)
@@ -98,7 +103,7 @@ bool Version::operator>(const Version& rhs)
 {
 	return (major > rhs.major) || (major == rhs.major && minor > rhs.minor)
 		   || (major == rhs.major && minor == rhs.minor && patch > rhs.patch)
-		   || (major == rhs.major && minor == rhs.minor && patch == rhs.patch && pre > rhs.pre);
+		   || (major == rhs.major && minor == rhs.minor && patch == rhs.patch && tweak > rhs.tweak);
 }
 
 bool Version::operator>=(const Version& rhs)
