@@ -218,6 +218,6 @@ bool IsCharEnclosedIn(std::string_view str, size_t idx, std::pair<char, char> wr
 {
 	size_t idx_1 = idx - 1;
 	size_t idx1 = idx + 1;
-	return idx1 < str.length() && str[idx_1] == wrapper.first && str[idx1] == wrapper.second;
+	return idx_1 < str.length() && idx1 < str.length() && str[idx_1] == wrapper.first && str[idx1] == wrapper.second;
 }
 } // namespace Strings
