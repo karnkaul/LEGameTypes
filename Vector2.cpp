@@ -90,7 +90,7 @@ f64 Vector2::SqrMagnitude() const
 std::string Vector2::ToString() const
 {
 	std::array<char, 40> buf;
-	SPRINTF(buf.data(), buf.size(), "(%.2f, %.2f)", x.ToF32(), y.ToF32());
+	snprintf(buf.data(), buf.size(), "(%.2f, %.2f)", x.ToF32(), y.ToF32());
 	return std::string(buf.data());
 }
 } // namespace Core

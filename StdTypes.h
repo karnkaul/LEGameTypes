@@ -7,10 +7,8 @@
 #include <type_traits>
 
 #if _MSC_VER
-#define SPRINTF(szData, size, szFormat, ...) sprintf_s(szData, size, szFormat, ##__VA_ARGS__)
 #define STRCAT(szData, size, szText) strcat_s(szData, size, szText)
 #else
-#define SPRINTF(szData, size, szFormat, ...) std::sprintf(szData, szFormat, ##__VA_ARGS__)
 #define STRCAT(szData, size, szText) strcat(szData, szText)
 #endif
 

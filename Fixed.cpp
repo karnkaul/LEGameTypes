@@ -106,7 +106,7 @@ Fixed Fixed::ArcTan() const
 std::string Fixed::ToString() const
 {
 	std::array<char, 16> buf;
-	SPRINTF(buf.data(), buf.size(), "%.2f", ToF32());
+	snprintf(buf.data(), buf.size(), "%.2f", ToF32());
 	return std::string(buf.data());
 }
 } // namespace Core
